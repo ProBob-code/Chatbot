@@ -1,0 +1,25 @@
+# Created by: Abdul Basith
+# Created on: 25/01/2022
+# Requested by : Jayendra Patel
+# Purpose: To launch uat containers
+# --------------------------------------- #
+
+version: "3"
+services:
+  Chatbot-BJ:
+    build: .
+    image: chatbot
+    network_mode: bridge
+    container_name: chatbot-bj
+    restart: always
+    privileged: true
+    ports:      
+      - "5081:5080"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/resolv.conf:/etc/resolv.conf:rw
+      - /etc/hosts:/etc/hosts:rw
+      - /etc/hostname:/etc/hostname:rw
+      - /usr/share/GeoIP:/usr/share/GeoIP:ro
+      - /home/bobjacob/sandbox/project01/Chatbot:/var/www/production/Chatbot:rw
+    tty: true    
